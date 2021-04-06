@@ -39,23 +39,41 @@ namespace cagin2245
 			return false;
 		}
 
-		Uint32* buffer = new Uint32[EKRAN_GENISLIGI * EKRAN_UZUNLUGU * sizeof(Uint32)];
+		m_buffer = new Uint32[EKRAN_GENISLIGI * EKRAN_UZUNLUGU ];
 
-		memset(buffer, 0, EKRAN_GENISLIGI * EKRAN_UZUNLUGU * sizeof(Uint32));
+		memset(m_buffer, 0, EKRAN_GENISLIGI * EKRAN_UZUNLUGU *sizeof(Uint32));
 
 
-		for (int i = 0; i < EKRAN_GENISLIGI * EKRAN_GENISLIGI; i++)
-		{
-			buffer[i] = 0x0FF0FF;
-		}
+		
 
-		SDL_UpdateTexture(m_texture, NULL, buffer, EKRAN_GENISLIGI * sizeof(Uint32));
+		
+
+		return true;
+	}
+
+	void Ekran::setPixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue)
+	{
+		Uint32 color = 0;
+
+		color += red;
+		color <<= 8;
+		color += green;
+		color <<= 8;
+		color += blue;
+		color <<= 8;
+		color += 0xFF; //Alpha value
+		 m_buffer [(y * EKRAN_GENISLIGI) + x] = color;
+	}
+
+	void Ekran::update()
+	{
+		SDL_UpdateTexture(m_texture, NULL, m_buffer, EKRAN_GENISLIGI * sizeof(Uint32));
 		SDL_RenderClear(m_renderer);
 		SDL_RenderCopy(m_renderer, m_texture, NULL, NULL);
 		SDL_RenderPresent(m_renderer);
 
-		return true;
 	}
+
 	bool Ekran::processEvents() {
 		SDL_Event event;
 		while (SDL_PollEvent(&event));
