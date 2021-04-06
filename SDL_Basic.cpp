@@ -30,7 +30,7 @@ int main()
 		}
 		 
 		// Check for messages/events
-		ekran.setPixel(400, 300, 255, 255, 255);
+		
 		ekran.update();// Draw the screen
 
 
