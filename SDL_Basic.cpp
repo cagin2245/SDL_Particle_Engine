@@ -27,8 +27,8 @@ int main()
 	{	// Update Particles
 		// Draw Particles
 		int elapsed = SDL_GetTicks();
-		ekran.clear();
-		swarm.Update();
+		
+		swarm.Update(elapsed);
 
 		unsigned char green = (unsigned char)((1 + sin(elapsed * 0.0053)) * 128);
 		unsigned char red = (unsigned char)((1 + sin(elapsed * 0.0023)) * 128);
@@ -40,7 +40,7 @@ int main()
 			Particle particle = pParticles[i];
 
 			int x = (particle.m_x +1) * Ekran::EKRAN_GENISLIGI/2;
-			int y = (particle.m_y + 1) * Ekran::EKRAN_UZUNLUGU / 2;
+			int y = particle.m_y * Ekran::EKRAN_GENISLIGI/2 + Ekran::EKRAN_UZUNLUGU/2 ;
 
 			ekran.setPixel(x, y, red, green,blue);
 
@@ -48,8 +48,11 @@ int main()
 				
 		
 		// Check for messages/events
-		ekran.setPixel(400, 300, 255, 255, 255);
-		ekran.update();// Draw the screen
+		//ekran.setPixel(400, 300, 255, 255, 255);
+		ekran.boxBlur();
+		ekran.update();
+		
+		// Draw the screen
 
 
 		if (ekran.processEvents() == false)
@@ -59,6 +62,7 @@ int main()
 	}
 
 	cout << "SDL Init succeeded." << endl;
+	ekran.close();
 	
 
 		return 0;
