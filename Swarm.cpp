@@ -10,5 +10,12 @@ namespace cagin2245 {
 
 		delete[] m_pParticles;
 	}
+	void Swarm::Update() {
+		for (int i = 0; i < Swarm::NPARTICLES; i++)
+		{
+			m_pParticles[i].Update();
+
+		}
+	}
 
 }

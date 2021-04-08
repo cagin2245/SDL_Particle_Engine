@@ -14,7 +14,7 @@ namespace cagin2245{
 		Swarm();
 		virtual ~Swarm();
 		const Particle* const getParticles() { return m_pParticles; };
-
+		void Update();
 
 	};
 	}

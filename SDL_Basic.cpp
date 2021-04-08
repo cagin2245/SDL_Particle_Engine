@@ -27,6 +27,9 @@ int main()
 	{	// Update Particles
 		// Draw Particles
 		int elapsed = SDL_GetTicks();
+		ekran.clear();
+		swarm.Update();
+
 		unsigned char green = (unsigned char)((1 + sin(elapsed * 0.0053)) * 128);
 		unsigned char red = (unsigned char)((1 + sin(elapsed * 0.0023)) * 128);
 		unsigned char blue = (unsigned char)((1 + sin(elapsed * 0.0042)) * 128);
@@ -42,12 +45,7 @@ int main()
 			ekran.setPixel(x, y, red, green,blue);
 
 		}
-
-		
-		
-
-		
-		
+				
 		
 		// Check for messages/events
 		ekran.setPixel(400, 300, 255, 255, 255);

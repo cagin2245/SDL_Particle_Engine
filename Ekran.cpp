@@ -50,7 +50,9 @@ namespace cagin2245
 
 		return true;
 	}
-
+	void Ekran::clear() {
+		memset(m_buffer, 0, EKRAN_GENISLIGI * EKRAN_UZUNLUGU * sizeof(Uint32));
+	}
 	void Ekran::setPixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue)
 	{
 
